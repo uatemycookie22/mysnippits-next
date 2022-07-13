@@ -1,10 +1,10 @@
 import {FunctionComponent} from "react";
-import SnippitTree from "./snippit-tree/snippit-tree";
+import SnippitTree from "components/snippit-tree/snippit-tree";
 
 const Body: FunctionComponent = () => {
     return (
         <div className="body">
-            <p>Body!</p>
+            <p>Body!!</p>
             <SnippitTree></SnippitTree>
         </div>
     )
