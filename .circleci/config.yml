@@ -17,21 +17,32 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
+  npm-install:
+    docker:
+      - image: cimg/base:2021.04
+    steps:
+      - checkout
+      - run:
+          name: install with no audit
+          command: npm i --no-audit
   npm-audit:
     docker:
       - image: cimg/base:2021.04
     steps:
       - checkout
       - run:
-          name: vulnerability checks
+          name: innit audit
           command: echo 'Starting vulnerability checks...'
+      - run:
+          name: vulnerability checks
+          command: npx audit-ci@^6 --config ./audit-ci.jsonc
+      
+      
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
-    jobs:
-      - say-hello
   dev-workflow:
     jobs:
+      - npm-install
       - npm-audit
