@@ -1,8 +1,6 @@
-
-
 export default function Header(){
     return (
-        <div className={}>
+        <div className="header">
             <p>Header!</p>
         </div>
     )
