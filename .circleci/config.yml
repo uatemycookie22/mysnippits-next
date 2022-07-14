@@ -20,11 +20,6 @@ jobs:
           command: |
             echo 'Starting vulnerability checks...'
             npm audit
-      - run:
-          name: build
-          command: |
-            echo 'Building...'
-            npm run build
             
 
 
