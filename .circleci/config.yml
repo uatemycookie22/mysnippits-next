@@ -23,11 +23,15 @@ jobs:
     steps:
       - checkout
       - run:
-          name: vulnerability checks
-          command: echo 'Starting vulnerability checks...'
-      - run:
           name: install
-          command: npm i
+          command: |
+            echo 'Starting vulnerability checks...'
+            npm ci
+      - run:
+          name: vulnerability checks
+          command: |
+            echo 'Starting vulnerability checks...'
+            npm audit
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
