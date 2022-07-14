@@ -19,7 +19,7 @@ jobs:
           command: "echo Hello, World!"
   setup:
     docker:
-      - image: circleci/node:stable
+      - image: cimg/ruby:2.4.10-node
     steps:
       - checkout
       - run:
