@@ -1,11 +1,11 @@
 import {FunctionComponent} from "react";
 
-const SnippitTree: FunctionComponent = () => {
+const EmptyTree: FunctionComponent = () => {
     return (
         <div className="tree">
-            <p>Tree!</p>
+            <p>Tree is empty</p>
         </div>
     )
 }
 
-export default SnippitTree;
+export {EmptyTree};
