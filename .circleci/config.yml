@@ -25,7 +25,7 @@ jobs:
       - run:
           name: install
           command: |
-            echo 'Starting vulnerability checks...'
+            echo 'Installing packages...'
             npm ci
       - run:
           name: vulnerability checks
