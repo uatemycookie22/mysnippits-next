@@ -1,2 +1,2 @@
-export {SnippitTree} from "./snippit-tree/snippit-tree"
-export {EmptyTree} from "./empty-tree/empty-tree"
+export * from "./snippit-tree/snippit-tree"
+export * from "./empty-tree/empty-tree"
