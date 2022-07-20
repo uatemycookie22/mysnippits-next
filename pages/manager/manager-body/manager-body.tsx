@@ -1,13 +1,16 @@
 import {FunctionComponent} from "react";
-import SnippitTree from "components/snippit-tree/snippit-tree";
+import {SnippitTree, EmptyTree} from "components"
+import {TreeProps} from "utils";
 
-const Body: FunctionComponent = () => {
+const getTreeOrEmpty: FunctionComponent<TreeProps> = (props) => {
+    return false ? (<SnippitTree {...props} ></SnippitTree>) : (<EmptyTree></EmptyTree>)
+}
+
+export default function Body<FunctionComponent>() {
     return (
         <div className="body">
-            <p>Body!!</p>
-            <SnippitTree></SnippitTree>
+            <p>Body!!!</p>
+            {getTreeOrEmpty({})}
         </div>
     )
 }
-
-export default Body;

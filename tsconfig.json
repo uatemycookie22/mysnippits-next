@@ -21,7 +21,8 @@
     "jsx": "preserve",
     "moduleResolution": "node",
     "paths": {
-      "components/*": ["components/*"]
+      "components": ["libs/components/index.ts"],
+      "utils": ["libs/utils/index.ts"]
     }
   },
   "include": [
