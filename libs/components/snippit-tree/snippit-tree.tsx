@@ -4,7 +4,9 @@ import {TreeProps} from "utils";
 export const SnippitTree: FunctionComponent<TreeProps> = () => {
     return (
         <div className="tree">
-            <p>Tree!</p>
+            <ul>
+
+            </ul>
         </div>
     )
 }
