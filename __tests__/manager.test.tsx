@@ -1,13 +1,12 @@
 import '@testing-library/jest-dom'
-import {SnippitTree} from "components";
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
+import Body from "../pages/manager/manager-body/manager-body";
 
 describe('Manager', () => {
-    it('renders snippit tree', () => {
-        render(<SnippitTree/>)
+    it('renders empty tree if empty', () => {
+        const {getByText} = render(<Body/>)
+        const emptyTree = getByText('Tree is empty')
 
-        const x = screen.getByRole('list')
-
-        expect(x).toBeInTheDocument()
+        expect(emptyTree).toBeInTheDocument()
     })
 })
