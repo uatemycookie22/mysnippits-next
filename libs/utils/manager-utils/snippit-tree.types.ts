@@ -4,26 +4,32 @@ interface FileName {
     extension: string,
 }
 
-interface Snippit {
+interface SnippitData {
     fileNameMetadata: FileName
 }
 
 interface SnippitCollection {
-    snippits: Snippit[]
+    snippits: SnippitData[]
 }
 
-interface Folder {
+interface FolderData {
     folderName: string
     snippitCollection: SnippitCollection
 }
 
 export interface FolderCollection {
-    folders: Folder[]
+    folders: FolderData[]
 }
 
 export interface TreeProps {
     folderCollection: FolderCollection
 }
+
+export interface FolderProps {
+    key: string
+    folderData: FolderData
+}
+
 
 export function getTreePropsSample(): TreeProps {
     const snippitsSample: SnippitCollection = {

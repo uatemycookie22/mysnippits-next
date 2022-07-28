@@ -1,1 +1,1 @@
-export * from './snippit-tree/snippit-tree.utils'
+export * from './manager-utils/snippit-tree.types'

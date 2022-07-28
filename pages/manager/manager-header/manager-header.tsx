@@ -1,6 +1,4 @@
-import {FunctionComponent} from "react";
-
-const Header: FunctionComponent = () => {
+const Header = () => {
     return (
         <div className="header">
             <p>Header!</p>

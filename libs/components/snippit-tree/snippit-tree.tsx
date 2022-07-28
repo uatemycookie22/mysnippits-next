@@ -1,18 +1,23 @@
-import {FunctionComponent} from "react";
 import {FolderCollection, TreeProps} from "utils";
+import {SnippitFolderComponent} from "../snippit-folder/snippit-folder";
 
-function constructFolderList<FunctionComponent>(folderCollection: FolderCollection){
+function constructFolderList (folderCollection: FolderCollection) {
     return folderCollection.folders.map(folder => {
-        return (<li key={folder.folderName}>{folder.folderName}</li>)
+        const folderProps = {
+            folderData: folder,
+        }
+
+        return (<SnippitFolderComponent key={folder.folderName} {...folderProps}/>
+        )
     })
 }
 
-export const SnippitTree: FunctionComponent<TreeProps> = (props) => {
+export const SnippitTreeComponent = (props: TreeProps) => {
     const folderList = constructFolderList(props.folderCollection)
 
     return (
         <div className="tree">
-            <ul>
+            <ul className="folderList">
                 {folderList}
             </ul>
         </div>
