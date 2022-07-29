@@ -1,5 +1,5 @@
 import {SnippitTreeComponent, EmptyTreeComponent} from "components"
-import {getTreePropsSample, TreeProps} from "utils";
+import {FolderCollection, TreeProps} from "utils";
 
 const getTreeOrEmpty = (props: TreeProps) => {
     return props.folderCollection.folders.length ?
@@ -7,8 +7,8 @@ const getTreeOrEmpty = (props: TreeProps) => {
         : (<EmptyTreeComponent></EmptyTreeComponent>)
 }
 
-export default function Body() {
-    const treeOrEmpty = getTreeOrEmpty(getTreePropsSample())
+export default function Body({ folderData }: { folderData: FolderCollection }) {
+    const treeOrEmpty = getTreeOrEmpty({folderCollection: folderData})
 
     return (
         <div className="body">

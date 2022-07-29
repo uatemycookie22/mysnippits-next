@@ -1,0 +1,31 @@
+{
+  "folders": [
+    {
+      "folderName": "My folder 1!",
+      "snippitCollection": {
+        "snippits": []
+      },
+      "folderCollection": {
+        "folders": []
+      }
+    },
+    {
+      "folderName": "My folder 2!",
+      "snippitCollection": {
+        "snippits": []
+      },
+      "folderCollection": {
+        "folders": []
+      }
+    },
+    {
+      "folderName": "My folder 3!",
+      "snippitCollection": {
+        "snippits": []
+      },
+      "folderCollection": {
+        "folders": []
+      }
+    }
+  ]
+}

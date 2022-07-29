@@ -15,6 +15,7 @@ interface SnippitCollection {
 interface FolderData {
     folderName: string
     snippitCollection: SnippitCollection
+    folderCollection: FolderCollection
 }
 
 export interface FolderCollection {
@@ -28,23 +29,4 @@ export interface TreeProps {
 export interface FolderProps {
     key: string
     folderData: FolderData
-}
-
-
-export function getTreePropsSample(): TreeProps {
-    const snippitsSample: SnippitCollection = {
-        snippits: []
-    }
-
-    const foldersSample: FolderCollection = {
-        folders: [
-            {folderName: 'My folder 1!', snippitCollection: snippitsSample},
-            {folderName: 'My folder 2!', snippitCollection: snippitsSample},
-            {folderName: 'My folder 3!', snippitCollection: snippitsSample},
-        ],
-    }
-
-    return {
-        folderCollection: foldersSample
-    }
 }
