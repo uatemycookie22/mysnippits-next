@@ -1,7 +1,7 @@
 const Header = () => {
     return (
         <div className="header">
-            <p>Header!</p>
+            <p>My Snippits</p>
         </div>
     )
 }

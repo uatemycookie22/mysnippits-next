@@ -1,19 +1,20 @@
 import {SnippitTreeComponent, EmptyTreeComponent} from "components"
-import {FolderCollection, TreeProps} from "utils";
+import {TreeProps} from "utils";
+import styles from "./manager-body.module.scss"
 
-const getTreeOrEmpty = (props: TreeProps) => {
-    return props.folderCollection.folders.length ?
+
+const GetTreeOrEmpty = (props: TreeProps) => {
+    return props.nodeCollection.nodes.length ?
         (<SnippitTreeComponent {...props} ></SnippitTreeComponent>)
         : (<EmptyTreeComponent></EmptyTreeComponent>)
 }
 
-export default function Body({ folderData }: { folderData: FolderCollection }) {
-    const treeOrEmpty = getTreeOrEmpty({folderCollection: folderData})
-
+export default function Body(treeProps: TreeProps) {
     return (
         <div className="body">
-            <p>Body!!!</p>
-            {treeOrEmpty}
+            <div className={styles.main}>
+                <GetTreeOrEmpty {...treeProps} />
+            </div>
         </div>
     )
 }

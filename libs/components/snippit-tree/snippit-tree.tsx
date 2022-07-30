@@ -1,24 +1,31 @@
-import {FolderCollection, TreeProps} from "utils";
-import {SnippitFolderComponent} from "../snippit-folder/snippit-folder";
+import {NodeCollection, TreeProps} from "utils";
+import {SnippitNodeComponent} from "../tree-node/tree-node";
+import styles from "./snippit-tree.module.scss"
 
-function constructFolderList (folderCollection: FolderCollection) {
-    return folderCollection.folders.map(folder => {
-        const folderProps = {
-            folderData: folder,
+function constructNodeTree (nodeCollection: NodeCollection, level: number) {
+    return nodeCollection.nodes.map((node, index) => {
+        const nodeProps = {
+            nodeData: node,
+            level,
         }
 
-        return (<SnippitFolderComponent key={folder.folderName} {...folderProps}/>
+        const nestedFolderList = constructNodeTree(node.nodeCollection, level + 1)
+
+        return (
+            <SnippitNodeComponent key={index.toString()} {...nodeProps}>
+                {nestedFolderList}
+            </SnippitNodeComponent>
         )
     })
 }
 
 export const SnippitTreeComponent = (props: TreeProps) => {
-    const folderList = constructFolderList(props.folderCollection)
+    const nodeTree = constructNodeTree(props.nodeCollection, 0)
 
     return (
-        <div className="tree">
-            <ul className="folderList">
-                {folderList}
+        <div className={styles.tree}>
+            <ul className={styles.nodes}>
+                {nodeTree}
             </ul>
         </div>
     )

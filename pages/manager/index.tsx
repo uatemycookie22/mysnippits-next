@@ -1,9 +1,9 @@
 import Head from "next/head";
 import Header from "./manager-header/manager-header";
 import Body from "./manager-body/manager-body";
-import {FolderCollection} from "utils";
+import {TreeProps} from "utils";
 
-export default function manager({ folderData }: { folderData: FolderCollection }){
+export default function manager(treeProps : TreeProps){
     return (
         <div>
             <Head>
@@ -11,7 +11,7 @@ export default function manager({ folderData }: { folderData: FolderCollection }
                 <meta name="description" content="mysnippits Manager"/>
             </Head>
             <Header></Header>
-            <Body folderData={folderData}></Body>
+            <Body {...treeProps}></Body>
         </div>
     )
 }
@@ -22,6 +22,6 @@ export async function getServerSideProps() {
     const data = await req.json()
 
     return {
-        props: { folderData: data },
+        props: { nodeCollection: data },
     }
 }
