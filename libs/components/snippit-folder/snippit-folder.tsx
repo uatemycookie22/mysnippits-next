@@ -1,12 +1,16 @@
 import {FolderProps} from "utils";
+import styles from "./snippit-folder.module.scss"
 
-export const SnippitFolderComponent = ({folderName}: FolderProps) => {
+export const SnippitFolderComponent = ({folderData, expanded, expandCallback}: Required<FolderProps>) => {
+    const expandedIcon = expanded ? 'expand_more' : 'chevron_right'
+
     return (
-        <>
-            <button>
-                <img/>
+        <div className={styles.folderContainer}>
+            <button className={styles.expandButton} onClick={() => expandCallback(!expanded)}>
+                <span className="material-icons">{expandedIcon}</span>
             </button>
-            <p>{}</p>
-        </>
+            <span className="material-icons">folder</span>
+            <p className={styles.folderName}>{folderData.folderName}</p>
+        </div>
     )
 }
