@@ -1,7 +1,5 @@
 import {SnippitTreeComponent, EmptyTreeComponent} from "components"
 import {TreeProps} from "utils";
-import styles from "./manager-body.module.scss"
-
 
 const GetTreeOrEmpty = (props: TreeProps) => {
     return props.nodeCollection.nodes.length ?
@@ -12,7 +10,7 @@ const GetTreeOrEmpty = (props: TreeProps) => {
 export default function Body(treeProps: TreeProps) {
     return (
         <div className="body">
-            <div className={styles.main}>
+            <div>
                 <GetTreeOrEmpty {...treeProps} />
             </div>
         </div>

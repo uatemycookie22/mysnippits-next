@@ -45,7 +45,7 @@ export function SnippitNodeComponent(props: TreeNodeProps) {
         : props.children.map(childNode => {
             const newProps: TreeNodeProps = {
                 ...childNode.props,
-                parentExpanded: !(props.parentExpanded === false || expanded === false)
+                parentExpanded: !(props.parentExpanded === false || !expanded)
             }
 
             return {

@@ -12,10 +12,6 @@ export interface SnippitData {
     fileNameMetadata: FileName
 }
 
-interface SnippitCollection {
-    snippits: SnippitData[]
-}
-
 interface FolderData {
     folderName: string
 }
@@ -41,7 +37,7 @@ export interface FolderProps {
     expandCallback?: () => void
 }
 
-export interface TreeNodeProps extends ProjectProps{
+export interface TreeNodeProps extends ProjectProps {
     key: string
     level: number
     nodeData: NodeData
