@@ -1,6 +1,4 @@
-import {FunctionComponent} from "react";
-
-export const EmptyTree: FunctionComponent = () => {
+export const EmptyTreeComponent = () => {
     return (
         <div className="tree">
             <p>Tree is empty</p>

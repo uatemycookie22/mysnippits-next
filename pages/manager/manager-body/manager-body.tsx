@@ -1,16 +1,18 @@
-import {FunctionComponent} from "react";
-import {SnippitTree, EmptyTree} from "components"
+import {SnippitTreeComponent, EmptyTreeComponent} from "components"
 import {TreeProps} from "utils";
 
-const getTreeOrEmpty: FunctionComponent<TreeProps> = (props) => {
-    return false ? (<SnippitTree {...props} ></SnippitTree>) : (<EmptyTree></EmptyTree>)
+const GetTreeOrEmpty = (props: TreeProps) => {
+    return props.nodeCollection.nodes.length ?
+        (<SnippitTreeComponent {...props} ></SnippitTreeComponent>)
+        : (<EmptyTreeComponent></EmptyTreeComponent>)
 }
 
-export default function Body<FunctionComponent>() {
+export default function Body(treeProps: TreeProps) {
     return (
         <div className="body">
-            <p>Body!!!</p>
-            {getTreeOrEmpty({})}
+            <div>
+                <GetTreeOrEmpty {...treeProps} />
+            </div>
         </div>
     )
 }

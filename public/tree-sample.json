@@ -1,0 +1,39 @@
+{
+  "nodes": [
+    {
+      "data": { "folderData": {"folderName": "My folder 1"} },
+      "nodeType": "FOLDER",
+      "nodeCollection": {
+        "nodes": [{
+          "data": { "folderData": {"folderName": "My nested folder 1"} },
+          "nodeType": "FOLDER",
+          "nodeCollection": {
+            "nodes": [{
+              "data": { "folderData": {"folderName": "My nested folder 1"} },
+              "nodeType": "FOLDER",
+              "nodeCollection": {
+                "nodes": []
+              }
+            }
+            ]
+          }
+        }
+        ]
+      }
+    },
+    {
+      "data": { "folderData": {"folderName": "My folder 2"} },
+      "nodeType": "FOLDER",
+      "nodeCollection": {
+        "nodes": []
+      }
+    },
+    {
+      "data": { "folderData": {"folderName": "My folder 3"} },
+      "nodeType": "FOLDER",
+      "nodeCollection": {
+        "nodes": []
+      }
+    }
+  ]
+}

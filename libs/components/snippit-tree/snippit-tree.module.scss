@@ -1,0 +1,15 @@
+.tree{
+  height: 80vh;
+  width: 70%;
+
+  border: 2px gray solid;
+  border-radius: 5px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+  .nodes{
+    all: unset;
+
+
+  }
+}
