@@ -1,5 +1,5 @@
 import {ReactElement} from "react";
 
-export interface ProjectProps<T> extends Record<string, T | ReactElement | ReactElement[] | undefined> {
+export interface ProjectProps extends Record<string, any> {
     children?: ReactElement | ReactElement[]
 }

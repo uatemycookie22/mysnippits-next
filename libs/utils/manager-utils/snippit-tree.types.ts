@@ -34,12 +34,16 @@ export interface TreeProps {
     nodeCollection: NodeCollection
 }
 
-export interface FolderProps extends ProjectProps<FolderData>{
+export interface FolderProps {
     folderData: FolderData
+    level?: number
+    expanded?: boolean
+    expandCallback?: () => void
 }
 
-export interface TreeNodeProps extends ProjectProps<NodeData | string | number>{
+export interface TreeNodeProps extends ProjectProps{
     key: string
     level: number
     nodeData: NodeData
+    parentExpanded?: boolean
 }

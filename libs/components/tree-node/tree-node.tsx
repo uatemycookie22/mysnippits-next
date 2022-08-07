@@ -1,17 +1,27 @@
 import {FolderProps, NodeData, TreeNodeProps} from "utils";
 import styles from './tree-node.module.scss'
 import {SnippitFolderComponent} from "../snippit-folder/snippit-folder";
+import {useState} from "react";
+
+type FolderOrSnippitProps = NodeData
+    & Required<Pick<FolderProps, 'expandCallback'>>
+    & Required<Pick<FolderProps, 'expanded'>>
+    & Pick<TreeNodeProps, 'level'>
 
 function AssertFolder(props: any): props is FolderProps {
-    return props?.folderName != undefined && true || false
+    return props?.hasOwnProperty('folderData')
 }
 
-function FolderOrSnippit(props: NodeData) {
-    const propsData = props.data
-
-    if(AssertFolder(propsData)) {
+function FolderOrSnippit({ data, level, nodeType, expandCallback, expanded }: FolderOrSnippitProps) {
+    if(nodeType === 'FOLDER' && AssertFolder(data)) {
+        const folderProps: Required<FolderProps> = {
+            ...data,
+            expanded,
+            expandCallback,
+            level,
+        }
         return (
-            <SnippitFolderComponent {...propsData} />
+            <SnippitFolderComponent {...folderProps} />
         )
     } else {
         return (<></>)
@@ -19,14 +29,39 @@ function FolderOrSnippit(props: NodeData) {
 }
 
 export function SnippitNodeComponent(props: TreeNodeProps) {
+    const [expanded, expand] = useState(false)
+
+    const folderOrSnippitProps: FolderOrSnippitProps = {
+        ...props.nodeData,
+        level: props.level,
+        expanded,
+        expandCallback: () => {
+            expand(!expanded)
+        },
+    }
+
+    const styledChildNodes = !Array.isArray(props.children) ?
+        undefined
+        : props.children.map(childNode => {
+            const newProps: TreeNodeProps = {
+                ...childNode.props,
+                parentExpanded: !(props.parentExpanded === false || expanded === false)
+            }
+
+            return {
+                ...childNode,
+                props: newProps,
+            }
+        })
+
     return (
         <>
-            <div>
-                <button className={styles.nodeButton}>
+            <div className={props.parentExpanded === false ? styles.collapsed : styles.nodeRow}>
+                <button className={styles.nodeButton} onDoubleClick={() => expand(!expanded)}>
+                    <FolderOrSnippit  {...folderOrSnippitProps} />
                 </button>
-                <FolderOrSnippit {...props.nodeData} />
             </div>
-            {props.children}
+            {styledChildNodes}
         </>
     )
 }
