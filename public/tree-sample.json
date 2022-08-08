@@ -17,7 +17,22 @@
             }
             ]
           }
-        }
+        },
+          {
+            "data": {
+              "snippitData": {
+                "fileNameMetadata": {
+                  "rawName": "My snippit 1.txt",
+                  "name": "My snippit 1",
+                  "extension": ".txt"
+                }
+              }
+            },
+            "nodeType": "SNIPPIT",
+            "nodeCollection": {
+              "nodes": []
+            }
+          }
         ]
       }
     },

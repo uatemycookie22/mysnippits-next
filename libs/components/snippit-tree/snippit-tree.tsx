@@ -1,5 +1,5 @@
 import {NodeCollection, TreeProps} from "utils";
-import {SnippitNodeComponent} from "../tree-node/tree-node";
+import {TreeNodeComponent} from "../tree-node/tree-node";
 import styles from "./snippit-tree.module.scss"
 
 function constructNodeTree (nodeCollection: NodeCollection, level: number) {
@@ -12,9 +12,9 @@ function constructNodeTree (nodeCollection: NodeCollection, level: number) {
         const nestedFolderList = constructNodeTree(node.nodeCollection, level + 1)
 
         return (
-            <SnippitNodeComponent key={index.toString()} {...nodeProps}>
+            <TreeNodeComponent key={index.toString()} {...nodeProps}>
                 {nestedFolderList}
-            </SnippitNodeComponent>
+            </TreeNodeComponent>
         )
     })
 }

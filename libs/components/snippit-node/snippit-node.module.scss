@@ -1,0 +1,18 @@
+.snippitContainer {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+
+  .openButton {
+    all: unset;
+    cursor: pointer;
+  }
+
+  .snippitName {
+    margin: 0 0 0 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}

@@ -8,7 +8,7 @@ export const SnippitFolderComponent = ({folderData, expanded, expandCallback, le
 
     return (
         <div className={styles.folderContainer} style={{left: `${leftOffset}px`, width: `calc(100% - ${leftOffset}px)`}}>
-            <div className={styles.expandButton} onClick={() => expandCallback()} onDoubleClickCapture={(e) => e.stopPropagation()}>
+            <div className={styles.expandButton} onClick={() => expandCallback({type: 'expand'})} onDoubleClickCapture={(e) => e.stopPropagation()}>
                 <span className="material-icons">{expandedIcon}</span>
             </div>
             <span className="material-icons">folder</span>
