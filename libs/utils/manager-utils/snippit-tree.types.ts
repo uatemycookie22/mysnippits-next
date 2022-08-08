@@ -1,4 +1,4 @@
-import {PartialPick, ProjectProps} from "../common/common.types";
+import {Action, PartialPick, ProjectProps} from "../common/common.types";
 import {Dispatch} from "react";
 
 export type NodeType = 'SNIPPIT' | 'FOLDER'
@@ -28,6 +28,7 @@ export interface NodeCollection {
 
 export interface TreeProps {
     nodeCollection: NodeCollection
+    treeDispatcher?: Dispatch<Action<any>>
 }
 
 export interface FolderProps
@@ -42,7 +43,7 @@ export interface SnippitNodeProps
     openCallback?: Dispatch<Action<TreeNodeState>>
 }
 
-export interface TreeNodeProps extends ProjectProps {
+export interface TreeNodeProps extends ProjectProps, Required<Pick<TreeProps, 'treeDispatcher'>> {
     key: string
     level: number
     nodeData: NodeData
@@ -53,9 +54,4 @@ export interface TreeNodeState {
     nodeType: NodeType
     expanded: boolean
     opened: boolean
-}
-
-export interface Action<T> {
-    type: 'expand' | 'open' | 'auto'
-    payload?: Partial<T>
 }

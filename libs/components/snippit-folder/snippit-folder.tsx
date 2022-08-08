@@ -5,7 +5,7 @@ import React from "react";
 export const SnippitFolderComponent = ({folderData, expanded, expandCallback, level}: Required<FolderProps>) => {
     const expandedIcon = expanded ? 'expand_more' : 'chevron_right'
     const leftOffset = (level+1)*20
-
+    console.log('folder')
     return (
         <div className={styles.folderContainer} style={{left: `${leftOffset}px`, width: `calc(100% - ${leftOffset}px)`}}>
             <div className={styles.expandButton} onClick={() => expandCallback({type: 'expand'})} onDoubleClickCapture={(e) => e.stopPropagation()}>

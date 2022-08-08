@@ -8,7 +8,7 @@ import {
 } from "utils";
 import styles from './tree-node.module.scss'
 import {SnippitFolderComponent} from "../snippit-folder/snippit-folder";
-import {useReducer, Dispatch, useMemo} from "react";
+import {useReducer, Dispatch} from "react";
 import {SnippitNodeComponent} from "../snippit-node/snippit-node";
 
 type FolderOrSnippitProps = NodeData
@@ -49,7 +49,7 @@ function FolderOrSnippit({ data, level, nodeType, dispatch, state }: FolderOrSni
 }
 
 function NodeReducer(state: TreeNodeState, action: Action<TreeNodeState>): TreeNodeState {
-    const actionType: typeof action.type = action.type === 'auto' ?
+    const actionType = action.type === 'auto' ?
         (state.nodeType === 'FOLDER' ? 'expand' : 'open')
         : action.type
 
@@ -63,43 +63,44 @@ function NodeReducer(state: TreeNodeState, action: Action<TreeNodeState>): TreeN
     }
 }
 
-export function TreeNodeComponent({children, nodeData, parentExpanded, level}: TreeNodeProps) {
+export function TreeNodeComponent({children, nodeData, parentExpanded, level, treeDispatcher}: Required<TreeNodeProps>) {
     const [state, dispatch] = useReducer(NodeReducer, {
         nodeType: nodeData.nodeType,
         expanded: false,
         opened: false,
     })
 
-    return useMemo ( () => {
-        const folderOrSnippitProps: FolderOrSnippitProps = {
-            ...nodeData,
-            level: level,
-            state,
-            dispatch,
-        }
+    const folderOrSnippitProps: FolderOrSnippitProps = {
+        ...nodeData,
+        level,
+        state,
+        dispatch: (action) => {
+            dispatch(action)
+            if (action.type === 'open') treeDispatcher({type: 'open-file'})
+        },
+    }
 
-        const styledChildNodes = !Array.isArray(children) ?
-            (<></>)
-            : children.map(childNode => {
-                const newProps: TreeNodeProps = {
-                    ...childNode.props,
-                    parentExpanded: !(parentExpanded === false || !state.expanded)
-                }
+    const styledChildNodes = !Array.isArray(children) ?
+        (<></>)
+        : children.map(childNode => {
+            const newProps: TreeNodeProps = {
+                ...childNode.props,
+                parentExpanded: !(!parentExpanded || !state.expanded)
+            }
 
-                return {
-                    ...childNode,
-                    props: newProps,
-                }
-            })
-        
-        return (
-        <>
-            <div className={parentExpanded === false ? styles.collapsed : styles.nodeRow}>
+            return {
+                ...childNode,
+                props: newProps,
+            }
+        })
+
+    return (<>
+            <div className={!parentExpanded ? styles.collapsed : styles.nodeRow}>
                 <button className={styles.nodeButton} onDoubleClick={() => dispatch({type: 'auto'})}>
                     <FolderOrSnippit  {...folderOrSnippitProps} />
                 </button>
             </div>
             {styledChildNodes}
         </>
-    )}, [children, level, nodeData, parentExpanded, state])
+    )
 }

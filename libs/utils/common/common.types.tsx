@@ -5,3 +5,8 @@ export interface ProjectProps extends Record<string, any> {
 }
 
 export type PartialPick<T, K extends keyof T> = Pick<Partial<T>, K>
+
+export interface Action<T> {
+    type: string
+    payload?: Partial<T>
+}
